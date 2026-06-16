@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Smart Pet Clinic CRM</title>
+<style>
+body{
+font-family:Arial;
+background:linear-gradient(135deg,#dbeafe,#f0fdf4);
+padding:20px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+background:white;
+padding:20px;
+border-radius:15px;
+box-shadow:0 0 15px rgba(0,0,0,0.1);
+}
+
+h1{
+text-align:center;
+color:#2563eb;
+}
+
+input,select{
+width:100%;
+padding:10px;
+margin:8px 0;
+border:1px solid #ccc;
+border-radius:8px;
+}
+
+button{
+background:#2563eb;
+color:white;
+padding:10px 20px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+}
+
+.cards{
+display:flex;
+gap:15px;
+margin:20px 0;
+}
+
+.card{
+flex:1;
+background:#eff6ff;
+padding:15px;
+border-radius:10px;
+text-align:center;
+}
+
+table{
+width:100%;
+border-collapse:collapse;
+}
+
+th,td{
+padding:10px;
+border:1px solid #ddd;
+text-align:center;
+}
+
+th{
+background:#2563eb;
+color:white;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🐾 Smart Pet Clinic CRM</h1>
+
+<div class="cards">
+<div class="card">
+<h3 id="total">0</h3>
+<p>Total Pets</p>
+</div>
+
+<div class="card">
+<h3 id="critical">0</h3>
+<p>Critical Pets</p>
+</div>
+</div>
+
+<input type="text" id="pet" placeholder="Pet Name">
+
+<input type="text" id="owner" placeholder="Owner Name">
+
+<input type="date" id="appointment">
+
+<select id="status">
+<option>Healthy</option>
+<option>Under Treatment</option>
+<option>Critical</option>
+</select>
+
+<button onclick="addPet()">Add Pet</button>
+
+<table>
+<thead>
+<tr>
+<th>Pet</th>
+<th>Owner</th>
+<th>Appointment</th>
+<th>Status</th>
+</tr>
+</thead>
+
+<tbody id="records"></tbody>
+</table>
+
+</div>
+
+<script>
+
+let total=0;
+let critical=0;
+
+function addPet(){
+
+let pet=document.getElementById("pet").value;
+let owner=document.getElementById("owner").value;
+let date=document.getElementById("appointment").value;
+let status=document.getElementById("status").value;
+
+let row=document.getElementById("records").insertRow();
+
+row.innerHTML=
+`<td>${pet}</td>
+<td>${owner}</td>
+<td>${date}</td>
+<td>${status}</td>`;
+
+total++;
+
+if(status==="Critical"){
+critical++;
+}
+
+document.getElementById("total").innerText=total;
+document.getElementById("critical").innerText=critical;
+
+}
+
+</script>
+
+</body>
+</html>
